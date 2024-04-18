@@ -50,8 +50,13 @@ public class DataInit {
         System.out.println("Файл для сохранения контактов: " + saveFileName);
         System.out.println("================================================");
         if (env.equals("init")) {
-            List<Contacts> contactsList = working.getFromFile(initFileName);
-            contactsList.forEach(c -> listOfContacts.put(c.getEmail(), c));
+            try {
+                List<Contacts> contactsList = working.getFromFile(initFileName);
+                contactsList.forEach(c -> listOfContacts.put(c.getEmail(), c));
+            } catch (Exception e) {
+                System.out.println("Ошибка при инициализации контактов из файла: " + initFileName);
+            }
+
         }
     }
 }
